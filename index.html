@@ -5,9 +5,9 @@
   <title>Carryflix </title>
   <link rel="icon" href="https://i.ibb.co/LpbbsYm/Untitled-1.png" type="image/png" sizes="250x250">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.1.1/shaka-player.ui.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.1/shaka-player.ui.min.js"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.1.1/controls.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.1/controls.min.css"
     crossorigin="anonymous">
 
   <style>
@@ -70,9 +70,9 @@
 
       // Faster startup and reduced buffering
       o.configure({
-        drm: {
+         drm: {
           clearKeys: {
-            "473177ea3d394060a0d0c266521ffd68": "cb6366270ecf03b7b80aae491ef9d618",
+            "2128008edf1c48f09f2b4c242b92313b": "32452567799140999f8fca3d5f5b98e2"
           }
         },
         streaming: {
@@ -110,7 +110,7 @@
 
       // Load the video as quickly as possible
       try {
-        await o.load("https://live-cito.9c9media.ca/4ccae8216e3a581e1088eeb48416282fa95299001725016468668/f/tsn3/manifest.mpd");
+        await o.load("https://adjara-live-eu.akamaized.net/exp=1777488033~acl=%2f*~id=5eb3efd7-2dfc-4de4-b979-01c21f9e3985~data=hdntl,aXA9MTEyLjIwNS45My43MSZleHA9MTc3NzQwMTY2MiZlaWQ9OTUwNTQ2Jm9pZD0xMDImdHlwZT1WT0QmdWlkPUV6NEFlN3w0ODVmMzZkZi01YzY2LTRiYWQtOGU1OS01Yjg2MzNmMzY0NzkmY2lkPWRjZS5hZGphcmEmcHQ9bnVsbA~hmac=0767de48c0eaab4b14482c5a5ecd5ef15e03a2eaff31e85268bf9cb6a602fd26/dash/live/2001589/302088-320743/manifest-d.mpd");
         console.log("The video has now been loaded instantly!");
       } catch (a) {
         onPlayerError(a);
@@ -136,6 +136,8 @@
     document.addEventListener("shaka-ui-loaded", init);
     document.addEventListener("shaka-ui-load-failed", initFailed);
 
+    // if (window == window.top)
+    // document.location = "https://linktr.ee/carryflix";
   </script>
   <div id="floatads"
     style="width:100%;margin:auto; text-align:center;float:none;overflow:hidden; display:scroll;position:fixed; bottom:100px;z-index:9999"
@@ -145,11 +147,13 @@
         target="_blank"><img
           src="https://static.vecteezy.com/system/resources/previews/008/550/626/original/closed-shop-sign-transparent-png.png"
           width="70"></a>
-      <div style="text-align:center;display:block;max-width:auto;height:auto;overflow:hidden;margin:auto"
+      <div style="text-align:center;display:block;
+max-width:auto
+;height:auto;overflow:hidden;margin:auto"
         bis_skin_checked="1"></div>
     </div>
   </div>
-  <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>
+  <!-- <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool"></script> -->
 </body>
 
 </html>
