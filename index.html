@@ -2,158 +2,210 @@
 <html>
 
 <head>
-  <title>Carryflix </title>
-  <link rel="icon" href="https://i.ibb.co/LpbbsYm/Untitled-1.png" type="image/png" sizes="250x250">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.1/shaka-player.ui.min.js"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.1/controls.min.css"
-    crossorigin="anonymous">
+  <meta content='no-referrer' name='referrer' />
+  <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+  <meta content='width=device-width, initial-scale=1, user-scalable=no' name='viewport' />
+  <style id='page-skin-1' type='text/css'></style>
+  <title> Live TV </title>
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+  <meta content='IE=edge' http-equiv='X-UA-Compatible' />
+  <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0' name='viewport' />
+  <script src='//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js'></script>
+  <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+  </script>
 
-  <style>
-    body {
-      background: #2b2b2b;
-    }
-
-    /* Overflow menu style */
-    .shaka-overflow-menu {
-      background-color: #0078FF;
-      color: rgb(153, 153, 153);
-    }
-
-    .shaka-overflow-menu button:hover {
-      background-color: rgb(45, 45, 45);
-    }
-
-    .shaka-overflow-button-label {
-      color: rgb(245, 245, 245);
-    }
-
-    .shaka-current-selection-span {
-      color: rgb(202, 202, 202);
-    }
-
-    .material-icons-round {
-      color: rgb(230, 230, 230);
-    }
-
-    /* Overflow sub menu style */
-    .shaka-settings-menu {
-      background-color: rgb(35, 35, 35);
-      color: rgb(255, 255, 255);
-    }
-
-    .shaka-settings-menu button {
-      color: rgb(255, 255, 255);
-    }
-
-    .shaka-settings-menu button:hover {
-      background-color: rgb(45, 45, 45);
-    }
-  </style>
 </head>
 
-<body bgcolor="black" style="margin:0">
-  <center>
-    <div data-shaka-player-container style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
-      <video autoplay playsinline data-shaka-player id="video" poster="https://i.ibb.co/LpbbsYm/Untitled-1.png"
-        style="width:100%;height:100%"></video>
-    </div>
-  </center>
+<body>
+  <html lang="en">
 
-  <script>
-    async function init() {
-      let e = document.getElementById("video"),
-        r = e.ui,
-        n = r.getControls(),
-        o = n.getPlayer();
+  <head>
 
-      // Faster startup and reduced buffering
-      o.configure({
-         drm: {
-          clearKeys: {
-            "e853333da2c9196ea11374634231bc45": "de2e2dbe818d78dfad07d6cd9a4c63d4"
-          }
-        },
-        streaming: {
-          startAtSegmentBoundary: true, // Start playback exactly at segment boundary
-          ignoreTextStreamFailures: true, // Ignore subtitle loading issues
-          rebufferingGoal: 1, // Lower rebufferingGoal for faster resume
-          bufferingGoal: 3, // Lower bufferingGoal for faster start
-          bufferBehind: 5, // Lower bufferBehind to free memory
-          autoLowLatencyMode: true, // Enable auto low latency if available
-          lowLatencyMode: true, // Enable low-latency streaming
-          jumpLargeGaps: true, // Allow skipping over gaps in the stream
-          inaccurateManifestTolerance: 0.3, // Faster manifest synchronization
-          stallEnabled: false // Disable stall detection for faster start
-        },
-        manifest: {
-          dash: {
-            ignoreMinBufferTime: true, // Ignore minBufferTime in MPD for faster start
-            autoCorrectDrift: true // Auto-correct time drift
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0 , user-scalable=no">
+    <meta name="viewport" content="width=device-width" />
+    <!-- SEO-->
+    <meta name="author" content="T20HD Embed" />
+    <meta name="designer" content="T20 " />
+    <meta name="description" content="Watch Live Streaming T20. No signup required">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
+    <script src="https://kit.fontawesome.com/bf2610f0a2.js" crossorigin="anonymous"></script>
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/halfmoonui/halfmoon@1.0.4/css/halfmoon.min.css" rel="stylesheet" />
+    <title>Carryflix Plyr Player </title>
+
+
+    <script>
+      var encodeContent = true; // Set to true or false based on your requirement
+    </script>
+
+
+    <script>
+      // Example function using the encode variable
+      function encodeLinks() {
+        if (encodeContent) {
+          // Logic to encode links
+          console.log('Links encoded.');
+        } else {
+          console.log('Links not encoded.');
         }
-      });
-
-      // UI configurations
-      r.configure({
-        controlPanelElements: ["play_pause", "time_and_duration", "spacer", "language", "volume", "fullscreen", "overflow_menu"],
-        volumeBarColors: { base: '#0078FF', level: '#0078FF' },
-        seekBarColors: { base: 'rgb(41, 41, 163)', buffered: 'rgba(63, 187, 1, 1)', played: '#0078FF' }
-      });
-
-      window.player = o;
-      window.ui = r;
-
-      o.addEventListener("error", onPlayerErrorEvent);
-      n.addEventListener("error", onUIErrorEvent);
-
-      // Load the video as quickly as possible
-      try {
-        await o.load("https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/jkcljgqbx8/out/v1/63bfa701559340f3a2a2cb1fccd24807/cenc.mpd");
-        console.log("The video has now been loaded instantly!");
-      } catch (a) {
-        onPlayerError(a);
       }
+
+      // Call the function
+      encodeLinks();
+    </script>
+
+
+
+    <b:if cond='data:content == "false"'>
+    </b:if>
+    <script>
+      var encode = <data:content />;
+    </script>
+
+
+
+    <script>
+      const _0x377913=_0x369f;function _0x369f(_0x2fbe30,_0x50f10b){const _0x50f026=_0x27d7();return _0x369f=function(_0x486cfe,_0x9fe0a9){_0x486cfe=_0x486cfe-(0x15fe+0x86b+-0x1d62);let _0x3eb516=_0x50f026[_0x486cfe];return _0x3eb516;},_0x369f(_0x2fbe30,_0x50f10b);}(function(_0x18f10d,_0x293c1b){const _0x18ed59=_0x369f,_0x5f4183=_0x18f10d();while(!![]){try{const _0x331937=parseInt(_0x18ed59(0x10b))/(0x19a3+0x1020+0xa*-0x42d)*(parseInt(_0x18ed59(0x10e))/(0x153d*-0x1+0x11af+0x390))+-parseInt(_0x18ed59(0x116))/(0xa43*0x2+-0x7d*0x19+-0x84e*0x1)+-parseInt(_0x18ed59(0x120))/(0x13c7+-0x14*-0xc0+0x1*-0x22c3)+-parseInt(_0x18ed59(0x109))/(0x4*0x40e+-0x2326+0x12f3)*(-parseInt(_0x18ed59(0x111))/(0x1*0x20e3+-0x1dfc+-0x2e1))+parseInt(_0x18ed59(0x110))/(0x1d06+0x25c4+-0x42c3)+-parseInt(_0x18ed59(0x10a))/(0x15c8+0x98f*-0x1+-0xc31)+parseInt(_0x18ed59(0x12a))/(-0x16ba+0x19f+-0x3*-0x70c)*(parseInt(_0x18ed59(0x11f))/(-0xe70+-0x701+-0x8d*-0x27));if(_0x331937===_0x293c1b)break;else _0x5f4183['push'](_0x5f4183['shift']());}catch(_0x2ceaba){_0x5f4183['push'](_0x5f4183['shift']());}}}(_0x27d7,-0x7a1f9+-0xcab57+0x1f1328),document[_0x377913(0x10c)+_0x377913(0x114)](_0x377913(0x11d)+_0x377913(0x129),()=>{const _0x5e488f=_0x377913,_0x3549d8={'yMMiG':function(_0x4cb02b,_0x52dab5){return _0x4cb02b===_0x52dab5;},'OlldG':_0x5e488f(0x115),'fcJDf':_0x5e488f(0x125)},_0x10b7f2=document[_0x5e488f(0x12d)+_0x5e488f(0x107)](_0x3549d8[_0x5e488f(0x126)]),_0x237e72=_0x10b7f2[_0x5e488f(0x117)+_0x5e488f(0x10f)](_0x3549d8[_0x5e488f(0x11b)])[-0x68*-0x19+-0x1*0x1dbe+0xda*0x17][_0x5e488f(0x11e)],_0x283cf2={};if(Hls[_0x5e488f(0x124)+'d']()){var _0xd6ddc1={'maxMaxBufferLength':0x64};const _0x35f368=new Hls(_0xd6ddc1);_0x35f368[_0x5e488f(0x11a)](_0x237e72),_0x35f368['on'](Hls[_0x5e488f(0x122)][_0x5e488f(0x121)+_0x5e488f(0x11c)],function(_0x136079,_0x8e83cb){const _0x1d0745=_0x5e488f,_0x343b2e={'ejVNb':function(_0x2277d1,_0x5bb2c8){const _0x1379dc=_0x369f;return _0x3549d8[_0x1379dc(0x112)](_0x2277d1,_0x5bb2c8);}},_0x49d468=_0x35f368[_0x1d0745(0x113)][_0x1d0745(0x123)](_0x264310=>_0x264310[_0x1d0745(0x127)]);_0x283cf2[_0x1d0745(0x108)]={'default':_0x49d468[0x383+0x269*0x1+0x2*-0x2f6],'options':_0x49d468,'forced':!(0x6ad*-0x3+-0x626+0x1a2d),'onChange':_0x5ab085=>function(_0x44e3be){const _0x233e07=_0x1d0745,_0x4f4c30={'imYly':function(_0x4a32d8,_0x5caeee){const _0x448548=_0x369f;return _0x343b2e[_0x448548(0x12b)](_0x4a32d8,_0x5caeee);}};window[_0x233e07(0x12c)][_0x233e07(0x113)][_0x233e07(0x128)]((_0x37210e,_0x50be90)=>{const _0x6be61d=_0x233e07;_0x4f4c30[_0x6be61d(0x119)](_0x37210e[_0x6be61d(0x127)],_0x44e3be)&&(window[_0x6be61d(0x12c)][_0x6be61d(0x10d)+'el']=_0x50be90);});}(_0x5ab085)},new Plyr(_0x10b7f2,_0x283cf2);}),_0x35f368[_0x5e488f(0x118)+'a'](_0x10b7f2),window[_0x5e488f(0x12c)]=_0x35f368;}else new Plyr(_0x10b7f2,_0x283cf2);}));function _0x27d7(){const _0x48832e=['3787287rxTCLZ','1158330WEmsfW','yMMiG','levels','stener','video','813669pQHoSZ','getElement','attachMedi','imYly','loadSource','fcJDf','ARSED','DOMContent','src','20KdXOud','4800540TUSxth','MANIFEST_P','Events','map','isSupporte','source','OlldG','height','forEach','Loaded','8561286yfwPIB','ejVNb','hls','querySelec','tor','quality','5sSQXNc','5587408Xzjipf','59797OhoyqH','addEventLi','currentLev','8jLdtmk','sByTagName'];_0x27d7=function(){return _0x48832e;};return _0x27d7();}
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
+  </head>
+
+  <body class="dark-mode with-custom-scrollbars with-custom-css-scrollbars">
+
+
+    <video id="player" controls preload="metadata" poster="https://i.ibb.co/LpbbsYm/Untitled-1.png" class="plyr">
+      <source id="videoSource" type="application/x-mpegURL" />
+    </video>
+
+    <script>
+      var _0x3b234e=_0x300f;(function(_0x21ad9e,_0x20f03d){var _0x372754=_0x300f,_0xb36461=_0x21ad9e();while(!![]){try{var _0x392e9e=-parseInt(_0x372754(0x1f2))/(0x57c+-0x149f*-0x1+-0x1a1a)*(parseInt(_0x372754(0x1fc))/(-0x6f+0xb*0xb+-0x8))+parseInt(_0x372754(0x1f4))/(-0x161+0x1f6c+-0x1e08)+-parseInt(_0x372754(0x1ff))/(0x21*0x76+0x9*-0x27b+0x721)+parseInt(_0x372754(0x209))/(0x1ce3+0x16*-0x20+-0x1a1e)+-parseInt(_0x372754(0x210))/(0x218b+-0x1cc4+-0x4c1)*(parseInt(_0x372754(0x20a))/(0x16*-0x49+-0x2331+0x297e))+parseInt(_0x372754(0x206))/(-0x4*-0x581+-0x101*-0x1a+-0x3016)+parseInt(_0x372754(0x20b))/(-0x955*0x3+-0xf0e+-0x1*-0x2b16);if(_0x392e9e===_0x20f03d)break;else _0xb36461['push'](_0xb36461['shift']());}catch(_0x4c97da){_0xb36461['push'](_0xb36461['shift']());}}}(_0x151b,-0x9799f+0x1*0xf5013+0x35a65));function getParameterByName(_0x2e3c8f,_0x4b6f1c){var _0x22b694=_0x300f,_0x4f4f83={'BTWjw':_0x22b694(0x200)+'0','ErRYr':function(_0x52f35a,_0x545d79){return _0x52f35a(_0x545d79);},'WsimC':function(_0x3f7a98,_0x3c1549){return _0x3f7a98+_0x3c1549;},'iyrqm':function(_0x79c53,_0x10bdd6){return _0x79c53+_0x10bdd6;},'AdtTz':_0x22b694(0x205),'lakbb':_0x22b694(0x1f6)+_0x22b694(0x1f8),'VEFmX':_0x22b694(0x204)},_0x3cd115=_0x4f4f83[_0x22b694(0x1fa)][_0x22b694(0x202)]('|'),_0xda1df1=-0xf6*-0x6+0x2*0xfeb+0x12cd*-0x2;while(!![]){switch(_0x3cd115[_0xda1df1++]){case'0':return _0x4f4f83[_0x22b694(0x1f1)](decodeURIComponent,_0xd55f69[-0x95*0x5+-0x2386+0x2671][_0x22b694(0x20e)](/\+/g,'\x20'));case'1':if(!_0x4b6f1c)_0x4b6f1c=window[_0x22b694(0x1f9)][_0x22b694(0x1f5)];continue;case'2':if(!_0xd55f69[-0x173b*-0x1+-0x15d0+-0x169])return'';continue;case'3':var _0x4d94dd=new RegExp(_0x4f4f83[_0x22b694(0x20c)](_0x4f4f83[_0x22b694(0x1fd)](_0x4f4f83[_0x22b694(0x1f7)],_0x2e3c8f),_0x4f4f83[_0x22b694(0x207)])),_0xd55f69=_0x4d94dd[_0x22b694(0x20d)](_0x4b6f1c);continue;case'4':if(!_0xd55f69)return null;continue;case'5':_0x2e3c8f=_0x2e3c8f[_0x22b694(0x20e)](/[\[\]]/g,_0x4f4f83[_0x22b694(0x203)]);continue;}break;}}var videoUrl=getParameterByName('id');function _0x300f(_0x365b5c,_0x2c7711){var _0x589fe3=_0x151b();return _0x300f=function(_0x9c7159,_0x282906){_0x9c7159=_0x9c7159-(0x1f85+0x5*-0x339+-0xd77);var _0x1b51e1=_0x589fe3[_0x9c7159];return _0x1b51e1;},_0x300f(_0x365b5c,_0x2c7711);}videoUrl&&(document[_0x3b234e(0x20f)+_0x3b234e(0x201)](_0x3b234e(0x211)+'e')[_0x3b234e(0x208)+'te'](_0x3b234e(0x1fe),videoUrl),document[_0x3b234e(0x20f)+_0x3b234e(0x201)](_0x3b234e(0x1f3))[_0x3b234e(0x1fb)]());function _0x151b(){var _0x15f88d=['ById','split','VEFmX','\x5c$&','[?&]','4244040hglTtr','lakbb','setAttribu','5046510FZBXDx','8257018pmolTh','15312366uNFrVv','WsimC','exec','replace','getElement','6sHgmDm','videoSourc','ErRYr','8941gauQEN','player','609879unRjHg','href','(=([^&#]*)','AdtTz','|&|#|$)','location','BTWjw','load','134nFGjVc','iyrqm','src','4254096sGupxz','1|5|3|4|2|'];_0x151b=function(){return _0x15f88d;};return _0x151b();}
+    </script>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const player = Plyr.setup('.js-player');
+      });  
+    </script>
+
+
+  </body>
+
+
+  </html>
+  <noscript>
+    <style>
+      #content-wrapper,
+      #footer-wrapper,
+      #header-wrapper,
+      #footer-wrapper {
+        display: none
+      }
+
+      body,
+      html {
+        overflow: hidden
+      }
+
+      /* AntiJs */
+      #AntiJsNoscript {
+        background: #e3e4e8;
+        padding: 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        top: -100px;
+        right: 0;
+        z-index: 1000;
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+      }
+
+      #AntiJsNoscript svg {
+        width: 80px;
+        height: 80px
+      }
+
+      #AntiJsNoscript svg path {
+        fill: #781a26
+      }
+
+      #AntiJsNoscript .teksNoscript {
+        background: #fcdc75;
+        color: #781a26;
+        position: absolute;
+        text-align: center;
+        padding: 0 30px 30px 30px;
+        margin: auto;
+        top: 30%;
+        left: 0;
+        right: 0;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.5em;
+        font-family: Courgette;
+        max-width: 670px;
+        box-shadow: 0 20px 10px -10px rgba(0, 0, 0, 0.15);
+        border: 7px solid#e336c5;
+        overflow: hidden;
+        transition: all .4s cubic-bezier(.25, .8, .25, 1);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        backface-visibility: visible;
+        transition: all .2s ease-in-out, visibility 0s;
+        transform-origin: bottom center;
+        pointer-events: auto;
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+        opacity: 1;
+        animation: AntiJsWobble .5s;
+        -moz-animation: AntiJsWobble .4s;
+        -webkit-animation: AntiJsWobble .4s;
+        -o-animation: AntiJsWobble .4s
+      }
+
+      #AntiJsNoscript .teksNoscript:hover {
+        box-shadow: 0 20px 10px -10px rgba(0, 0, 0, .07);
+      }
+
+      #AntiJsNoscript .teksNoscript h4,
+      #AntiJsNoscript .teksNoscript .judul {
+        display: inline-block;
+        padding: 20px 5px 5px 5px;
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 20px
+      }
+    </style>
+  </noscript>
+  <!--ANTI COPAS-->
+  <script>
+    // Code Developed by BlogTriggers Team members
+    window.onload = function () {
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      }, false);
+
+      function disabledEvent(e) {
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        } else if (window.event) {
+          window.event.cancelBubble = true;
+        }
+        e.preventDefault();
+        return false;
+      }
+    };
+    document.onkeydown = function (e) {
+      return false;
     }
-
-    function onPlayerErrorEvent(e) {
-      onPlayerError(e.detail);
-    }
-
-    function onPlayerError(e) {
-      console.error("Error code", e.code, "object", e);
-    }
-
-    function onUIErrorEvent(e) {
-      onPlayerError(e.detail);
-    }
-
-    function initFailed(e) {
-      console.error("Unable to load the UI library!");
-    }
-
-    document.addEventListener("shaka-ui-loaded", init);
-    document.addEventListener("shaka-ui-load-failed", initFailed);
-
-    // if (window == window.top)
-    // document.location = "https://linktr.ee/carryflix";
+    navigator.keyboard.lock();    
   </script>
-  <div id="floatads"
-    style="width:100%;margin:auto; text-align:center;float:none;overflow:hidden; display:scroll;position:fixed; bottom:100px;z-index:9999"
-    bis_skin_checked="1">
-    <div bis_skin_checked="1"><a href="https://stenexeb.xyz/4/7895547" id="close-floatads"
-        onclick="document.getElementById('floatads').style.display = 'none';" style="cursor:pointer;"
-        target="_blank"><img
-          src="https://static.vecteezy.com/system/resources/previews/008/550/626/original/closed-shop-sign-transparent-png.png"
-          width="70"></a>
-      <div style="text-align:center;display:block;
-max-width:auto
-;height:auto;overflow:hidden;margin:auto"
-        bis_skin_checked="1"></div>
-    </div>
-  </div>
-  <!-- <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool"></script> -->
 </body>
 
 </html>
